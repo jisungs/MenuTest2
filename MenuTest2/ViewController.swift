@@ -28,7 +28,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        selectedArray = contriesArray[selectedIndex]
     }
 
 
