@@ -62,6 +62,8 @@ class ViewController: UIViewController {
 
 }
 
+// MARK: -Tabel View Delegate
+
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedArray.count
@@ -79,6 +81,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+// MARK: - Collection View Delegate
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
