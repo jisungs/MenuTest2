@@ -16,15 +16,15 @@ class ViewController: UIViewController {
     // MARK: - proerties
     
     let contriesArray = [["Chaina","Japan", "Korea"],
-                         ["Egypt","Sudan","South Africa"],
                          ["Spain","Netherlands", "France"]]
     var selectedArray = [String]()
     var selectedIndex = 0
     var selectedIndexPath = IndexPath(item: 0, section: 0)
-    let menuTitles = ["Asia", "Africa", "Europe"]
+    let menuTitles = ["Map", "List"]
     var indicatorView = UIView()
     let indicatorHeight : CGFloat = 3
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         indicatorView.frame  = CGRect(x: menuCollection.bounds.minX, y: menuCollection.bounds.maxY - indicatorHeight, width: menuCollection.bounds.width, height: indicatorHeight)
         menuCollection.addSubview(indicatorView)
         
+        
     }
     
     @objc func swipeAction(_ sender: UISwipeGestureRecognizer){
@@ -56,6 +57,22 @@ class ViewController: UIViewController {
             if selectedIndex > 0 {
                 selectedIndex -= 1
             }
+        }
+        
+        selectedIndexPath = IndexPath(item: selectedIndex, section: 0)
+        menuCollection.selectItem(at: selectedIndexPath, animated: true, scrollPosition: .centeredVertically)
+        refreshContent()
+    }
+    
+    func refreshContent(){
+        selectedArray = contriesArray[selectedIndex]
+        contriesTable.reloadData()
+        
+        let desiredX = (menuCollection.bounds.width/CGFloat(menuTitles.count))*CGFloat(selectedIndex)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.indicatorView.frame = CGRect(x:desiredX, y:self.menuCollection.bounds.maxY -
+                self.indicatorHeight, width: self.menuCollection.bounds.width / CGFloat(self.menuTitles.count), height: self.indicatorHeight)
         }
     }
 
@@ -85,15 +102,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Collection View Delegate
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menuTitles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCell
+        
+        cell.setupCell(text: menuTitles[indexPath.item])
         
         return cell
     }
     
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         
+        return CGSize(width: (self.view.frame.width) / CGFloat(menuTitles.count), height: collectionView.bounds.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndex = indexPath.item
+        refreshContent()
+    }
     
 }
