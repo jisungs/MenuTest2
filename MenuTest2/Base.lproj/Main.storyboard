@@ -21,7 +21,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XSo-Gc-E0M"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="22V-rD-6ES">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="3" minimumInteritemSpacing="3" id="22V-rD-6ES">
                                     <size key="itemSize" width="150" height="40"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -36,7 +36,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QR4-jy-O9O">
-                                                    <rect key="frame" x="53" y="14" width="45" height="23.5"/>
+                                                    <rect key="frame" x="54" y="10" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -48,7 +48,6 @@
                                             <constraint firstItem="QR4-jy-O9O" firstAttribute="centerX" secondItem="ViB-5d-13l" secondAttribute="centerX" id="SfP-Ag-97Z"/>
                                             <constraint firstItem="QR4-jy-O9O" firstAttribute="centerY" secondItem="ViB-5d-13l" secondAttribute="centerY" id="uVt-Sw-d4p"/>
                                         </constraints>
-                                        <size key="customSize" width="150" height="40"/>
                                         <connections>
                                             <outlet property="label" destination="QR4-jy-O9O" id="3zn-Bu-dxh"/>
                                         </connections>
